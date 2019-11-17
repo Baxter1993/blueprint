@@ -1,18 +1,4 @@
-/*
- * Copyright 2017 Palantir Technologies, Inc. All rights reserved.
- *
- * Licensed under the Apache License, Version 2.0 (the "License");
- * you may not use this file except in compliance with the License.
- * You may obtain a copy of the License at
- *
- *     http://www.apache.org/licenses/LICENSE-2.0
- *
- * Unless required by applicable law or agreed to in writing, software
- * distributed under the License is distributed on an "AS IS" BASIS,
- * WITHOUT WARRANTIES OR CONDITIONS OF ANY KIND, either express or implied.
- * See the License for the specific language governing permissions and
- * limitations under the License.
- */
+*
 
 import * as React from "react";
 
@@ -63,15 +49,7 @@ export class SelectExample extends React.PureComponent<IExampleProps, ISelectExa
         resetOnSelect: false,
     };
 
-    private handleAllowCreateChange = this.handleSwitchChange("allowCreate");
-    private handleDisabledChange = this.handleSwitchChange("disabled");
-    private handleFilterableChange = this.handleSwitchChange("filterable");
-    private handleInitialContentChange = this.handleSwitchChange("hasInitialContent");
-    private handleItemDisabledChange = this.handleSwitchChange("disableItems");
-    private handleMinimalChange = this.handleSwitchChange("minimal");
-    private handleResetOnCloseChange = this.handleSwitchChange("resetOnClose");
-    private handleResetOnQueryChange = this.handleSwitchChange("resetOnQuery");
-    private handleResetOnSelectChange = this.handleSwitchChange("resetOnSelect");
+    vate handleResetOnSelectChange = this.handleSwitchChange("resetOnSelect");
 
     public render() {
         const { allowCreate, disabled, disableItems, film, minimal, ...flags } = this.state;
@@ -159,28 +137,4 @@ export class SelectExample extends React.PureComponent<IExampleProps, ISelectExa
         );
     }
 
-    private handleValueChange = (film: IFilm) => {
-        // Delete the old film from the list if it was newly created.
-        const { createdItems, items } = maybeDeleteCreatedFilmFromArrays(
-            this.state.items,
-            this.state.createdItems,
-            this.state.film,
-        );
-        // Add the new film to the list if it is newly created.
-        const { createdItems: nextCreatedItems, items: nextItems } = maybeAddCreatedFilmToArrays(
-            items,
-            createdItems,
-            film,
-        );
-        this.setState({ createdItems: nextCreatedItems, film, items: nextItems });
-    };
-
-    private handleSwitchChange(prop: keyof ISelectExampleState) {
-        return (event: React.FormEvent<HTMLInputElement>) => {
-            const checked = event.currentTarget.checked;
-            this.setState(state => ({ ...state, [prop]: checked }));
-        };
-    }
-
-    private isItemDisabled = (film: IFilm) => this.state.disableItems && film.year < 2000;
-}
+    
